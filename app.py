@@ -1,12 +1,30 @@
+import asyncio
+from contextlib import asynccontextmanager
+from datetime import datetime, timedelta
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles 
 import json
 
 
-app = FastAPI()
-app.mount("/static", StaticFiles(directory="static", html=True), name="static")
-
 DATA_FILE = "checkboxes.json"
+
+
+async def lifespan(app: FastAPI):
+    async def reset_loop():
+        while True:
+            now = datetime.now()
+            next_midnight = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+            wait_time = (next_midnight - now).total_seconds()
+            await asyncio.sleep(wait_time)
+
+            with open(DATA_FILE, "w") as file:
+                json.dump({"morning": False, "day": False, "evening": False}, file)
+    
+    asyncio.create_task(reset_loop())
+    yield
+
+app = FastAPI(lifespan=lifespan)
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 
 @app.get("/get-state")
