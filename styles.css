@@ -1,0 +1,37 @@
+body{
+    background-color: lightblue;
+    font-family: Brush Script MT, cursive;
+}
+.container{
+    border-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(136, 183, 199);
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 50%;
+}
+
+.container h1{
+    font-size: 2rem;
+    text-align: center;    
+}
+
+.content{
+    border-radius: 10px;
+    margin-bottom: 1vh;
+    font-size: 2rem;
+    padding: 5px;
+    border: 2px solid rgb(121, 164, 179);
+}
+
+.content input{
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid rgb(121, 164, 179);
+    border-radius: 0.15em;
+    margin-left: 6px;
+}
