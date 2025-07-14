@@ -1,5 +1,1 @@
-{
-    "morning": false,
-    "day": false,
-    "evening": false
-}
+{"morning": true, "day": false, "evening": false}
