@@ -1,7 +1,5 @@
 const checkboxes = ['morning', 'day', 'evening'];
 
-
-
 async function fetchCheckboxes(){
     const response = await fetch('/get-state');
     const data = await response.json();
@@ -12,7 +10,6 @@ async function fetchCheckboxes(){
 
 setInterval(fetchCheckboxes, 10000);
 fetchCheckboxes();
-
 
 checkboxes.forEach(checkbox => {
     document.getElementById(checkbox).addEventListener('change', async (event) => {
